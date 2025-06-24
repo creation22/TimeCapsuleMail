@@ -1,5 +1,6 @@
 import React from 'react'
 import { Clock, Mail, Heart, Shield, Star, Calendar, Send, CheckCircle, Users, Globe, Sparkles, ArrowRight } from 'lucide-react'
+import { Link } from 'react-scroll';
 
 const Home = () => {
   return (
@@ -10,10 +11,10 @@ const Home = () => {
           TimeCapsuleMail
         </div>
         <div className='hidden md:flex items-center gap-8 text-lg font-medium'>
-          <div className='cursor-pointer hover:text-purple-600 transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-purple-50'>Home</div>
-          <div className='cursor-pointer hover:text-purple-600 transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-purple-50'>About</div>
-          <div className='cursor-pointer hover:text-purple-600 transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-purple-50'>Stories</div>
-          <div className='cursor-pointer hover:text-purple-600 transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-purple-50'>Pricing</div>
+          <Link to="home" smooth={true} duration={500} className='cursor-pointer hover:text-purple-600 transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-purple-50'>Home</Link>
+          <Link to = "about" smooth= {true} duration = {500} className='cursor-pointer hover:text-purple-600 transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-purple-50'>About</Link>
+          <Link to = "stories" smooth = {true} duration= {500} className='cursor-pointer hover:text-purple-600 transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-purple-50'>Stories</Link>
+          <Link to = "pricing" smooth= "true" duration={500} className='cursor-pointer hover:text-purple-600 transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-purple-50'>Pricing</Link>
           <div className='bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-full cursor-pointer hover:shadow-lg transition-all duration-300 font-semibold'>
             Login
           </div>
@@ -28,7 +29,7 @@ const Home = () => {
       </div>
 
       {/* Hero Section */}
-      <div className='flex flex-col items-center justify-center min-h-[85vh] text-center px-6 py-16'>
+      <div id="home"  className='flex flex-col items-center justify-center min-h-[85vh] text-center px-6 py-16'>
         <div className='flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-8'>
           <Sparkles className='w-4 h-4' />
           <span>Send messages through time ✨</span>
@@ -51,10 +52,10 @@ const Home = () => {
             <Send className='w-5 h-5' />
             Start Your Journey Free
           </div>
-          <div className='border-2 border-gray-300 text-gray-700 px-10 py-4 rounded-full cursor-pointer hover:border-purple-600 hover:text-purple-600 transition-all duration-300 text-lg font-semibold flex items-center gap-2'>
+          <Link  to = "working" smooth = {true} duration = {500} className='border-2 border-gray-300 text-gray-700 px-10 py-4 rounded-full cursor-pointer hover:border-purple-600 hover:text-purple-600 transition-all duration-300 text-lg font-semibold flex items-center gap-2'>
             <Calendar className='w-5 h-5' />
             See How It Works
-          </div>
+          </Link>
         </div>
         
         <div className='flex items-center gap-8 mt-16 text-sm text-gray-500'>
@@ -74,7 +75,7 @@ const Home = () => {
       </div>
 
       {/* Features Section */}
-      <div className='py-24 px-6 bg-gradient-to-b from-gray-50 to-white'>
+      <div id='about' className='py-24 px-6 bg-gradient-to-b from-gray-50 to-white'>
         <div className='container mx-auto'>
           <div className='text-center mb-20'>
             <h2 className='text-5xl md:text-6xl font-black mb-6'>
@@ -128,7 +129,7 @@ const Home = () => {
       </div>
 
       {/* How It Works Section */}
-      <div className='py-24 px-6'>
+      <div className='py-24 px-6' id = "working">
         <div className='container mx-auto'>
           <div className='text-center mb-20'>
             <h2 className='text-5xl md:text-6xl font-black mb-6'>
@@ -185,7 +186,7 @@ const Home = () => {
       </div>
 
       {/* Testimonials Section */}
-      <div className='py-24 px-6 bg-gradient-to-b from-purple-50 to-indigo-50'>
+      <div id = "stories"className='py-24 px-6 bg-gradient-to-b from-purple-50 to-indigo-50'>
         <div className='container mx-auto'>
           <div className='text-center mb-20'>
             <h2 className='text-5xl md:text-6xl font-black mb-6'>
@@ -238,7 +239,7 @@ const Home = () => {
       </div>
 
       {/* Pricing Section */}
-      <div className='py-24 px-6'>
+      <div id = "pricing" className='py-24 px-6'>
         <div className='container mx-auto'>
           <div className='text-center mb-20'>
             <h2 className='text-5xl md:text-6xl font-black mb-6'>
