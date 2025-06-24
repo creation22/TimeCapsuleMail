@@ -22,8 +22,8 @@ function App() {
     }}
   />
      {/* Your Content/Components */}
-     {/* <Home/> */}
-     <EmailComposer/>
+     <Home/>
+     {/* <EmailComposer/> */}
 </div>
 
 </>
