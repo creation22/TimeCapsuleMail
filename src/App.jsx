@@ -3,9 +3,9 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Analytics } from "@vercel/analytics/react"
+import { BrowserRouter as Router , Routes , Route } from 'react-router-dom'
 import Home from './componnets/Home'
-import EmailComposer from './componnets/Email'
-import EmailRewrite from './componnets/EmailRewrite'
+import Email from './componnets/Email'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -26,8 +26,13 @@ function App() {
   />
      {/* Your Content/Components */}
      {/* <Home/> */}
-     <EmailComposer/>
-     {/* <EmailRewrite/> */}
+     <Routes>
+      <Route path = "/" element = {<Home/>} />
+      <Route path = "/email" element ={<Email/>} />
+     </Routes>
+    
+  
+     
 </div>
 
 </>

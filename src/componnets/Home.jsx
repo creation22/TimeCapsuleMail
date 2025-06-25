@@ -1,8 +1,9 @@
 import React from 'react'
 import { Clock, Mail, Heart, Shield, Star, Calendar, Send, CheckCircle, Users, Globe, Sparkles, ArrowRight } from 'lucide-react'
 import { Link } from 'react-scroll';
-
+import { useNavigate } from 'react-router-dom'; 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <div className='relative z-10 text-gray-900 font-inter'>
       {/* Header */}
@@ -274,7 +275,7 @@ const Home = () => {
                   </li>
                 ))}
               </ul>
-              <button className='w-full border-2 border-gray-300 text-gray-700 py-3 rounded-xl font-semibold hover:border-purple-600 hover:text-purple-600 transition-colors duration-300'>
+              <button className='w-full border-2 border-gray-300 text-gray-700 py-3 rounded-xl font-semibold hover:border-purple-600 hover:text-purple-600 transition-colors duration-300' onClick = {() => navigate('/email') }>
                 Get Started Free
               </button>
             </div>
