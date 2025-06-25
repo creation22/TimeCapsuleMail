@@ -2,7 +2,8 @@ import { Routes, Route } from 'react-router-dom';
 import { Analytics } from "@vercel/analytics/react";
 import Home from './componnets/Home';
 import Email from './componnets/Email';
-
+import Login from './componnets/Login';
+import Signup from './componnets/Signup';
 function App() {
   return (
     <>
@@ -24,6 +25,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/email" element={<Email />} />
+            <Route path="/Signup" element={<Signup/>} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+
           </Routes>
         </div>
       </div>

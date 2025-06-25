@@ -17,8 +17,8 @@ const Home = () => {
           <Link to = "about" smooth = {true} duration = {500} className='cursor-pointer hover:text-gray-600 transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-gray-50'>About</Link>
           <Link to = "stories" smooth = {true} duration = {500}  className='cursor-pointer hover:text-gray-600 transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-gray-50'>Stories</Link>
           <Link to = "pricing" smooth = {true} duration = {500}  className='cursor-pointer hover:text-gray-600 transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-gray-50'>Pricing</Link>
-          <div className='bg-black text-white px-6 py-2 rounded-full cursor-pointer hover:bg-gray-800 hover:shadow-lg transition-all duration-300 font-semibold'>
-            Login
+          <div className='bg-black text-white px-6 py-2 rounded-full cursor-pointer hover:bg-gray-800 hover:shadow-lg transition-all duration-300 font-semibold' onClick={() => navigate('/signup')}>
+            Signup
           </div>
         </div>
         
