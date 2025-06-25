@@ -5,6 +5,7 @@ import './App.css'
 import { Analytics } from "@vercel/analytics/react"
 import Home from './componnets/Home'
 import EmailComposer from './componnets/Email'
+import EmailRewrite from './componnets/EmailRewrite'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -24,8 +25,9 @@ function App() {
     }}
   />
      {/* Your Content/Components */}
-     <Home/>
-     {/* <EmailComposer/> */}
+     {/* <Home/> */}
+     <EmailComposer/>
+     {/* <EmailRewrite/> */}
 </div>
 
 </>
