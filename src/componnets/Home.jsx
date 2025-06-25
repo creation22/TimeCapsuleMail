@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { use } from 'react'
 import { Clock, Mail, Heart, Shield, Star, Calendar, Send, CheckCircle, Users, Globe, Sparkles, ArrowRight } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
-  const navigate = (path) => {
-    console.log(`Navigating to: ${path}`);
-  };
+  const navigate = useNavigate()
 
   return (
     <div className='relative z-10 text-gray-900 font-inter'>
