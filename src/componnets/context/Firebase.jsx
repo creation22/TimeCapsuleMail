@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
-
+import { Timestamp } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyDyDLXAc-Ox9serspsXw9nRzqDXPN3eHN8",
   authDomain: "timecapsulemail-98a82.firebaseapp.com",
@@ -23,19 +23,25 @@ export const FirebaseContext = createContext(null);
 
 export const FirebaseProvider = (props) => {
 
-  const writeDoc = async ({ senderEmail, senderId, recipientEmail, message, deliveryDate, deliveryTime }) => {
-    const result = await addDoc(collection(firestore, "emails"), {
-      senderEmail,
-      senderId,
-      recipientEmail,
-      message,
-      deliveryDate,
-      deliveryTime,
-      createdAt: serverTimestamp(),
-      delivered: false,
-    });
-    console.log("Document written with ID: ", result.id);
-  };
+const writeDoc = async ({ senderEmail, senderId, recipientEmail, message, deliveryDate, deliveryTime }) => {
+  const [year, month, day] = deliveryDate.split("-").map(Number);
+  const [hours, minutes] = deliveryTime.split(":").map(Number);
+
+  const scheduledDate = new Date(year, month - 1, day, hours, minutes);
+
+  const result = await addDoc(collection(firestore, "emails"), {
+    senderEmail,
+    senderId,
+    recipientEmail,
+    message,
+    deliveryDate,
+    deliveryTime,
+    scheduledTimestamp: Timestamp.fromDate(scheduledDate),
+    createdAt: serverTimestamp(),
+    delivered: false,
+  });
+  console.log("Document written with ID: ", result.id);
+};
 
   const [user, setUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
