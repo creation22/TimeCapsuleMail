@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDyDLXAc-Ox9serspsXw9nRzqDXPN3eHN8",
@@ -16,14 +17,29 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const firestore = getFirestore(app);
 
 export const FirebaseContext = createContext(null);
 
 export const FirebaseProvider = (props) => {
-  const [user, setUser] = useState(null);
-  const [loadingUser, setLoadingUser] = useState(true); // To avoid flicker
 
-  // Signup with email
+  const writeDoc = async ({ senderEmail, senderId, recipientEmail, message, deliveryDate, deliveryTime }) => {
+    const result = await addDoc(collection(firestore, "emails"), {
+      senderEmail,
+      senderId,
+      recipientEmail,
+      message,
+      deliveryDate,
+      deliveryTime,
+      createdAt: serverTimestamp(),
+      delivered: false,
+    });
+    console.log("Document written with ID: ", result.id);
+  };
+
+  const [user, setUser] = useState(null);
+  const [loadingUser, setLoadingUser] = useState(true);
+
   const signupUser = (email, password, name) => {
     return createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -33,23 +49,19 @@ export const FirebaseProvider = (props) => {
       });
   };
 
-  // Login with email
   const loginUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  // Google Login
   const loginWithGoogle = () => {
     const provider = new GoogleAuthProvider();
     return signInWithPopup(auth, provider);
   };
 
-  // Logout
   const logoutUser = () => {
     return signOut(auth);
   };
 
-  // Listen for auth state changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -69,6 +81,7 @@ export const FirebaseProvider = (props) => {
         loginUser,
         logoutUser,
         loginWithGoogle,
+        writeDoc,
       }}
     >
       {props.children}

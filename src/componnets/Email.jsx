@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FirebaseContext } from './context/Firebase';
 
 const Email = () => {
-  const { user } = useContext(FirebaseContext);
+  const { user , writeDoc } = useContext(FirebaseContext);
   const navigate = useNavigate();
 
   const date = new Date();
@@ -18,14 +18,37 @@ const Email = () => {
   const [message, setMessage] = useState('');
   const [showSignInPrompt, setShowSignInPrompt] = useState(false);
 
-  const handleSend = () => {
-    if (!user) {
-      setShowSignInPrompt(true);
-    } else {
-      console.log('Sending email to future...');
-      // Your email sending logic goes here
+const handleSend = () => {
+  if (!user) {
+    setShowSignInPrompt(true);
+  } else {
+    if (!recipientName || !deliveryDate || !deliveryTime || !message) {
+      alert("Please fill all fields.");
+      return;
     }
-  };
+
+    writeDoc({
+      senderEmail: user.email,
+      senderId: user.uid,
+      recipientEmail: recipientName, // This should be recipient's EMAIL, not name
+      message,
+      deliveryDate,
+      deliveryTime,
+    })
+      .then(() => {
+        alert("Your email to the future has been scheduled!");
+        // Optionally, reset fields:
+        setRecipientName('');
+        setDeliveryDate('');
+        setDeliveryTime('');
+        setMessage('');
+      })
+      .catch(() => {
+        alert("Failed to schedule email. Please try again.");
+      });
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-gray-100 text-black relative overflow-hidden">
@@ -73,7 +96,7 @@ const Email = () => {
             <div>
               <label className="block mb-2 text-lg font-medium flex items-center gap-2">
                 <User className="w-5 h-5" />
-                Recipient's Name
+                Recipient's Email 
               </label>
               <input
                 type="text"
