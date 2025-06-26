@@ -45,28 +45,28 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-100 flex flex-col justify-center items-center px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 flex flex-col justify-center items-center px-4 relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5"></div>
-      <div className="absolute top-0 left-0 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/5 to-gray-900/5"></div>
+      <div className="absolute top-0 left-0 w-72 h-72 bg-gray-400 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
+      <div className="absolute bottom-0 right-0 w-72 h-72 bg-black rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse delay-1000"></div>
       
       <div className="relative z-10 w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl mb-4 shadow-lg">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-black to-gray-700 rounded-2xl mb-4 shadow-lg">
             <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h1>
-          <p className="text-gray-600">Sign in to your account to continue</p>
+          <h1 className="text-3xl font-bold text-black mb-2">Welcome Back</h1>
+          <p className="text-gray-700">Sign in to your account to continue</p>
         </div>
 
         {/* Login Form */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-8 space-y-6">
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200 p-8 space-y-6">
           {errorMsg && (
-            <div className="p-4 text-red-700 bg-red-50 border border-red-200 rounded-xl text-center animate-shake">
+            <div className="p-4 text-red-800 bg-red-50 border border-red-300 rounded-xl text-center animate-shake">
               <div className="flex items-center justify-center gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16c-.77.833.192 2.5 1.732 2.5z" />
@@ -83,9 +83,9 @@ const Login = () => {
                 value={email}
                 type="email"
                 placeholder="Email address"
-                className="w-full p-4 pl-12 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50/50 hover:bg-white focus:bg-white"
+                className="w-full p-4 pl-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-200 bg-gray-50/50 hover:bg-white focus:bg-white text-black placeholder-gray-500"
               />
-              <svg className="absolute left-4 top-4 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="absolute left-4 top-4 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
               </svg>
             </div>
@@ -96,9 +96,9 @@ const Login = () => {
                 value={password}
                 type="password"
                 placeholder="Password"
-                className="w-full p-4 pl-12 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50/50 hover:bg-white focus:bg-white"
+                className="w-full p-4 pl-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-200 bg-gray-50/50 hover:bg-white focus:bg-white text-black placeholder-gray-500"
               />
-              <svg className="absolute left-4 top-4 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="absolute left-4 top-4 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
             </div>
@@ -110,7 +110,7 @@ const Login = () => {
             className={`w-full py-4 rounded-xl text-white font-semibold transition-all duration-200 transform ${
               loading 
                 ? "bg-gray-400 cursor-not-allowed" 
-                : "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl"
+                : "bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl"
             }`}
           >
             <div className="flex items-center justify-center gap-2">
@@ -126,20 +126,20 @@ const Login = () => {
 
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-200"></div>
+              <div className="w-full border-t border-gray-300"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-white text-gray-500">Or continue with</span>
+              <span className="px-4 bg-white text-gray-600">Or continue with</span>
             </div>
           </div>
 
           <button
             onClick={handleGoogleLogin}
             disabled={loading}
-            className={`w-full py-4 rounded-xl border-2 border-gray-200 flex items-center justify-center gap-3 font-medium transition-all duration-200 transform ${
+            className={`w-full py-4 rounded-xl border-2 border-gray-300 flex items-center justify-center gap-3 font-medium transition-all duration-200 transform ${
               loading 
                 ? "bg-gray-100 cursor-not-allowed text-gray-400" 
-                : "bg-white hover:bg-gray-50 text-gray-700 hover:border-gray-300 hover:scale-[1.02] active:scale-[0.98] shadow-sm hover:shadow-md"
+                : "bg-white hover:bg-gray-50 text-black hover:border-gray-400 hover:scale-[1.02] active:scale-[0.98] shadow-sm hover:shadow-md"
             }`}
           >
             <img
@@ -150,10 +150,10 @@ const Login = () => {
             Continue with Google
           </button>
 
-          <div className="text-center pt-4 border-t border-gray-100">
-            <span className="text-gray-600">Don't have an account? </span>
+          <div className="text-center pt-4 border-t border-gray-200">
+            <span className="text-gray-700">Don't have an account? </span>
             <button
-              className="text-blue-600 font-semibold hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-black font-semibold hover:text-gray-700 hover:underline transition-colors duration-200"
               onClick={() => navigate("/signup")}
             >
               Sign Up
