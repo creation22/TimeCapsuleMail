@@ -7,6 +7,7 @@ import { FirebaseContext } from "./context/Firebase";
 import Footer from './Footer';
 import Working from './Working';
 import Testimonials from './Testimonials';
+
 import Featurs from './Features';
 const Home = () => {
   const navigate = useNavigate()

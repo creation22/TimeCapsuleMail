@@ -1,66 +1,48 @@
 
-import { Clock, Mail, Heart, Shield, Star, Calendar, Send, CheckCircle, Users, Globe, Sparkles, ArrowRight } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-scroll'
-import { useContext } from "react";
-import { FirebaseContext } from "./context/Firebase";
+"use client";
 
-import React from 'react'
+import React from "react";  
+import { InfiniteMovingCards } from "../componnets/ui/infinite-moving-cards";
 
-const Testimonials = () => {
+const  Testimonials = () => {
   return (
-          <div id = "stories" className='py-24 px-6 bg-gray-50'>
-        <div className='container mx-auto'>
-          <div className='text-center mb-20'>
-            <h2 className='text-5xl md:text-6xl font-black mb-6'>
-              Stories That{' '}
-              <span className='text-black'>
-                Touch Hearts
-              </span>
-            </h2>
-            <p className='text-xl text-gray-600'>Real experiences from our amazing community</p>
-          </div>
-          
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
-            {[
-              {
-                quote: "Sent myself a message during a tough time. When it arrived 6 months later, it was exactly what I needed to hear. Pure magic! ✨",
-                author: "Sarah Chen",
-                role: "Student, Mumbai"
-              },
-              {
-                quote: "Surprised my wife with a love letter that arrived on our 10th anniversary. She cried happy tears for hours. Best gift ever! 💕",
-                author: "Rajesh Kumar",
-                role: "Software Engineer, Bangalore"
-              },
-              {
-                quote: "Started a tradition of sending birthday messages to my daughter. She's now 16 and looks forward to them every year! 🎂",
-                author: "Priya Sharma",
-                role: "Doctor, Delhi"
-              }
-            ].map((testimonial, index) => (
-              <div key={index} className='bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300'>
-                <div className='flex items-center gap-1 mb-4'>
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className='w-5 h-5 fill-yellow-400 text-yellow-400' />
-                  ))}
-                </div>
-                <p className='text-gray-700 mb-6 italic leading-relaxed'>"{testimonial.quote}"</p>
-                <div className='flex items-center gap-3'>
-                  <div className='w-10 h-10 bg-black rounded-full flex items-center justify-center text-white font-bold'>
-                    {testimonial.author.charAt(0)}
-                  </div>
-                  <div>
-                    <div className='font-semibold text-gray-900'>{testimonial.author}</div>
-                    <div className='text-sm text-gray-500'>{testimonial.role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-  )
+    <div
+      className="h-[40rem] rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+      <InfiniteMovingCards items={testimonials} direction="right" speed="slow" />
+    </div>
+  );
 }
 
-export default Testimonials
+const testimonials = [
+  {
+    quote:
+      "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.",
+    name: "Charles Dickens",
+    title: "A Tale of Two Cities",
+  },
+  {
+    quote:
+      "To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take Arms against a Sea of troubles, And by opposing end them: to die, to sleep.",
+    name: "William Shakespeare",
+    title: "Hamlet",
+  },
+  {
+    quote: "All that we see or seem is but a dream within a dream.",
+    name: "Edgar Allan Poe",
+    title: "A Dream Within a Dream",
+  },
+  {
+    quote:
+      "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
+    name: "Jane Austen",
+    title: "Pride and Prejudice",
+  },
+  {
+    quote:
+      "Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.",
+    name: "Herman Melville",
+    title: "Moby-Dick",
+  },
+];
+
+export default Testimonials;
