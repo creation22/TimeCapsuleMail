@@ -1,10 +1,21 @@
-import React, { use } from 'react'
+import React, { useState } from 'react'
 import { Clock, Mail, Heart, Shield, Star, Calendar, Send, CheckCircle, Users, Globe, Sparkles, ArrowRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-scroll'
+import { useContext } from "react";
+import { FirebaseContext } from "./context/Firebase";
 const Home = () => {
   const navigate = useNavigate()
+  const { user, logoutUser } = useContext(FirebaseContext);
+  const [showMenu, setShowMenu] = useState(false);
 
+  const handleLogout = () => {
+    logoutUser().then(() => {
+      setShowMenu(false);
+      navigate("/");
+    });
+  };
+  
   return (
     <div className='relative z-10 text-gray-900 font-inter'>
       {/* Header */}
@@ -17,9 +28,36 @@ const Home = () => {
           <Link to = "about" smooth = {true} duration = {500} className='cursor-pointer hover:text-gray-600 transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-gray-50'>About</Link>
           <Link to = "stories" smooth = {true} duration = {500}  className='cursor-pointer hover:text-gray-600 transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-gray-50'>Stories</Link>
           <Link to = "pricing" smooth = {true} duration = {500}  className='cursor-pointer hover:text-gray-600 transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-gray-50'>Pricing</Link>
-          <div className='bg-black text-white px-6 py-2 rounded-full cursor-pointer hover:bg-gray-800 hover:shadow-lg transition-all duration-300 font-semibold' onClick={() => navigate('/signup')}>
-            Signup
+    <div className="relative">
+      {user ? (
+        <div>
+          <div
+            onClick={() => setShowMenu(!showMenu)}
+            className="bg-black text-white px-6 py-2 rounded-full cursor-pointer hover:bg-gray-800 hover:shadow-lg transition-all duration-300 font-semibold"
+          >
+            {user.displayName || user.email}
           </div>
+
+          {showMenu && (
+            <div className="absolute right-0 mt-2 w-32 bg-white border rounded shadow-lg z-10">
+              <div
+                onClick={handleLogout}
+                className="px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              >
+                Logout
+              </div>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div
+          className="bg-black text-white px-6 py-2 rounded-full cursor-pointer hover:bg-gray-800 hover:shadow-lg transition-all duration-300 font-semibold"
+          onClick={() => navigate("/signup")}
+        >
+          Signup
+        </div>
+      )}
+    </div>
         </div>
         
         {/* Mobile Menu Button */}
