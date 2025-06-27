@@ -1,3 +1,55 @@
+// import { useNavigate } from "react-router-dom";
+// import { useContext, useState } from "react";
+// import { FirebaseContext } from "./context/Firebase";
+
+// const Login = () => {
+//   const { loginUser, loginWithGoogle } = useContext(FirebaseContext);
+//   const navigate = useNavigate();
+     
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [loading, setLoading] = useState(false);
+//   const [errorMsg, setErrorMsg] = useState("");
+
+//   const handleLogin = () => {
+//     setErrorMsg("");
+//     if (!email || !password) {
+//       return setErrorMsg("Please enter both email and password.");
+//     }
+
+//     setLoading(true);
+//     loginUser(email, password)
+//       .then(() => navigate("/"))
+//       .catch((error) => {
+//         if (error.code === "auth/user-not-found") setErrorMsg("No account found with this email.");
+//         else if (error.code === "auth/wrong-password") setErrorMsg("Incorrect password.");
+//         else setErrorMsg("Something went wrong. Please try again.");
+//       })
+//       .finally(() => setLoading(false));
+//   };
+
+//   const handleGoogleLogin = () => {
+//     setErrorMsg("");
+//     setLoading(true);
+
+//     if (!loginWithGoogle) {
+//       setErrorMsg("Google Sign-In not available.");
+//       setLoading(false);
+//       return;
+//     }
+
+//     loginWithGoogle()
+//       .then(() => navigate("/"))
+//       .catch(() => setErrorMsg("Google Sign-In failed. Please try again."))
+//       .finally(() => setLoading(false));
+//   };
+
+//   return (
+    
+//   );
+// };
+
+// export default Login;
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { FirebaseContext } from "./context/Firebase";
@@ -5,7 +57,6 @@ import { FirebaseContext } from "./context/Firebase";
 const Login = () => {
   const { loginUser, loginWithGoogle } = useContext(FirebaseContext);
   const navigate = useNavigate();
-     
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -13,11 +64,9 @@ const Login = () => {
 
   const handleLogin = () => {
     setErrorMsg("");
-    if (!email || !password) {
-      return setErrorMsg("Please enter both email and password.");
-    }
-
+    if (!email || !password) return setErrorMsg("Please enter both email and password.");
     setLoading(true);
+
     loginUser(email, password)
       .then(() => navigate("/"))
       .catch((error) => {
@@ -31,21 +80,15 @@ const Login = () => {
   const handleGoogleLogin = () => {
     setErrorMsg("");
     setLoading(true);
-
-    if (!loginWithGoogle) {
-      setErrorMsg("Google Sign-In not available.");
-      setLoading(false);
-      return;
-    }
-
     loginWithGoogle()
-      .then(() => navigate("/"))
       .catch(() => setErrorMsg("Google Sign-In failed. Please try again."))
       .finally(() => setLoading(false));
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 flex flex-col justify-center items-center px-4 relative overflow-hidden">
+    <div>
+      {/* Your existing styled login form code here */}
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 flex flex-col justify-center items-center px-4 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/5 to-gray-900/5"></div>
       <div className="absolute top-0 left-0 w-72 h-72 bg-gray-400 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
@@ -161,6 +204,8 @@ const Login = () => {
           </div>
         </div>
       </div>
+    </div>
+      {/* Just keep the handleGoogleLogin logic updated */}
     </div>
   );
 };
