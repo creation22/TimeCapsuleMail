@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
-import { Mail, Clock, User, Calendar, Send, XCircle, CheckCircle } from 'lucide-react';
+import { Mail, Clock, User, Calendar, Send, XCircle, CheckCircle, AlertTriangle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { FirebaseContext } from './context/Firebase';
+import Footer from './Footer';
 
 const Email = () => {
   const { user, writeDoc } = useContext(FirebaseContext);
@@ -19,6 +20,7 @@ const Email = () => {
   const [showSignInPrompt, setShowSignInPrompt] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showFailure, setShowFailure] = useState(false);
+  const [showLimitPopup, setShowLimitPopup] = useState(false);
 
   const handleSend = () => {
     if (!user) {
@@ -44,8 +46,12 @@ const Email = () => {
           setDeliveryTime('');
           setMessage('');
         })
-        .catch(() => {
-          setShowFailure(true);
+        .catch((error) => {
+          if (error?.message?.includes('24 hours')) {
+            setShowLimitPopup(true);
+          } else {
+            setShowFailure(true);
+          }
         });
     }
   };
@@ -59,6 +65,13 @@ const Email = () => {
         <h2 className="text-2xl md:text-3xl mb-2">Write an Email to the Future</h2>
         <p className="text-lg md:text-xl font-light text-gray-300">
           A letter from {day} {monthName} {year}
+        </p>
+      </div>
+
+      {/* Info Message */}
+      <div className="max-w-5xl mx-auto mb-6 text-center bg-yellow-100 text-yellow-800 p-4 rounded-lg border border-yellow-300">
+        <p className="text-lg font-medium">
+          Note: You can send only <span className="font-bold">one Gmail every 24 hours.</span>
         </p>
       </div>
 
@@ -192,6 +205,24 @@ const Email = () => {
           </div>
         </div>
       )}
+
+      {/* 24-Hour Restriction Popup */}
+      {showLimitPopup && (
+        <div className="fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-80">
+          <div className="bg-white text-black rounded-xl p-6 max-w-sm w-full mx-4 text-center space-y-4">
+            <AlertTriangle className="w-12 h-12 text-yellow-500 mx-auto" />
+            <h2 className="text-2xl font-bold">Hold On!</h2>
+            <p>You can send only one Gmail every 24 hours. Please try again later.</p>
+            <button
+              onClick={() => setShowLimitPopup(false)}
+              className="mt-4 bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-all duration-200"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
