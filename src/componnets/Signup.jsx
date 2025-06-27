@@ -1,91 +1,3 @@
-// import { useNavigate } from "react-router-dom";
-// import { useContext, useState } from "react";
-// import { FirebaseContext } from "./context/Firebase";
-
-// const Signup = () => {
-//   const { signupUser, loginWithGoogle } = useContext(FirebaseContext);
-//   const navigate = useNavigate();
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [name, setName] = useState("");
-//   const [loading, setLoading] = useState(false);
-//   const [errorMsg, setErrorMsg] = useState("");
-//   const [showPassword, setShowPassword] = useState(false);
-
-//   const validateEmail = (email) => {
-//     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-//   };
-
-//   const handleSignup = async () => {
-//     setErrorMsg("");
-    
-//     // Enhanced validation
-//     if (!name.trim()) return setErrorMsg("Name is required.");
-//     if (!email.trim()) return setErrorMsg("Email is required.");
-//     if (!password) return setErrorMsg("Password is required.");
-    
-//     if (!validateEmail(email)) return setErrorMsg("Please enter a valid email address.");
-//     if (password.length < 6) return setErrorMsg("Password should be at least 6 characters.");
-//     if (name.trim().length < 2) return setErrorMsg("Name should be at least 2 characters.");
-
-//     setLoading(true);
-//     try {
-//       await signupUser(email.trim(), password, name.trim());
-//       navigate("/");
-//     } catch (error) {
-//       console.error("Signup error:", error);
-//       switch (error.code) {
-//         case "auth/email-already-in-use":
-//           setErrorMsg("Email already in use. Please login.");
-//           break;
-//         case "auth/weak-password":
-//           setErrorMsg("Password is too weak. Please choose a stronger password.");
-//           break;
-//         case "auth/invalid-email":
-//           setErrorMsg("Invalid email address.");
-//           break;
-//         case "auth/operation-not-allowed":
-//           setErrorMsg("Email/password accounts are not enabled. Please contact support.");
-//           break;
-//         default:
-//           setErrorMsg("Something went wrong. Please try again.");
-//       }
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   const handleGoogleSignup = async () => {
-//     setErrorMsg("");
-//     setLoading(true);
-//     try {
-//       await loginWithGoogle();
-//       navigate("/");
-//     } catch (error) {
-//       console.error("Google signup error:", error);
-//       if (error.code === "auth/popup-closed-by-user") {
-//         setErrorMsg("Sign-in was cancelled.");
-//       } else if (error.code === "auth/popup-blocked") {
-//         setErrorMsg("Popup was blocked. Please allow popups and try again.");
-//       } else {
-//         setErrorMsg("Google Sign-In failed. Please try again.");
-//       }
-//     }
-//     setLoading(false);
-//   };
-
-//   const handleKeyPress = (e) => {
-//     if (e.key === "Enter" && !loading) {
-//       handleSignup();
-//     }
-//   };
-
-//   return (
-    
-//   );
-// };
-
-// export default Signup;
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { FirebaseContext } from "./context/Firebase";
@@ -98,34 +10,78 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
   const handleSignup = async () => {
     setErrorMsg("");
-    if (!name.trim() || !email.trim() || !password) return setErrorMsg("All fields are required.");
+    
+    // Enhanced validation
+    if (!name.trim()) return setErrorMsg("Name is required.");
+    if (!email.trim()) return setErrorMsg("Email is required.");
+    if (!password) return setErrorMsg("Password is required.");
+    
+    if (!validateEmail(email)) return setErrorMsg("Please enter a valid email address.");
+    if (password.length < 6) return setErrorMsg("Password should be at least 6 characters.");
+    if (name.trim().length < 2) return setErrorMsg("Name should be at least 2 characters.");
+
     setLoading(true);
     try {
       await signupUser(email.trim(), password, name.trim());
       navigate("/");
     } catch (error) {
       console.error("Signup error:", error);
-      if (error.code === "auth/email-already-in-use") setErrorMsg("Email already in use.");
-      else if (error.code === "auth/weak-password") setErrorMsg("Password too weak.");
-      else setErrorMsg("Something went wrong. Please try again.");
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          setErrorMsg("Email already in use. Please login.");
+          break;
+        case "auth/weak-password":
+          setErrorMsg("Password is too weak. Please choose a stronger password.");
+          break;
+        case "auth/invalid-email":
+          setErrorMsg("Invalid email address.");
+          break;
+        case "auth/operation-not-allowed":
+          setErrorMsg("Email/password accounts are not enabled. Please contact support.");
+          break;
+        default:
+          setErrorMsg("Something went wrong. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
   };
 
-  const handleGoogleSignup = () => {
+  const handleGoogleSignup = async () => {
     setErrorMsg("");
     setLoading(true);
-    loginWithGoogle().finally(() => setLoading(false));
+    try {
+      await loginWithGoogle();
+      navigate("/");
+    } catch (error) {
+      console.error("Google signup error:", error);
+      if (error.code === "auth/popup-closed-by-user") {
+        setErrorMsg("Sign-in was cancelled.");
+      } else if (error.code === "auth/popup-blocked") {
+        setErrorMsg("Popup was blocked. Please allow popups and try again.");
+      } else {
+        setErrorMsg("Google Sign-In failed. Please try again.");
+      }
+    }
+    setLoading(false);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && !loading) {
+      handleSignup();
+    }
   };
 
   return (
-    <div>
-      {/* Your existing styled signup form code here */}
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 flex flex-col justify-center items-center px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 flex flex-col justify-center items-center px-4 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/5 to-gray-900/5"></div>
       <div className="absolute top-0 right-0 w-72 h-72 bg-gray-400 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
@@ -299,9 +255,8 @@ const Signup = () => {
         </div>
       </div>
     </div>
-      {/* Just keep the handleGoogleSignup logic updated */}
-    </div>
   );
 };
 
 export default Signup;
+
