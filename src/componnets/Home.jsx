@@ -131,7 +131,7 @@ const Home = () => {
             onClick={() => navigate('/email')}
           >
             <Send className='w-5 h-5' />
-            Start Your Journey Free
+            Express Yourself
           </div>
 
           <Link
@@ -156,7 +156,7 @@ const Home = () => {
           </div>
           <div className='flex items-center gap-2'>
             <Heart className='w-4 h-4' />
-            <span>10M+ Messages Sent</span>
+            <span>1k+ Messages Sent</span>
           </div>
         </div>
       </div>
@@ -169,9 +169,9 @@ const Home = () => {
 
       {/* Testimonials Section */}
 <div id="stories" className="py-10 text-center">
-  <h2 className="text-2xl sm:text-3xl font-bold mb-4">What Our Users Say</h2>
+  <h2 className="text-3xl sm:text-6xl font-bold font-serif mb-4">What Our Users Say</h2>
   
-  <p className="text-gray-500 mb-6">Real stories from people using TimeCapsuleMail</p>
+  <p className="text-gray-500 mb-6 text-2xl">Real stories from people using TimeCapsuleMail</p>
 
   <Testimonials />
 </div>
