@@ -53,6 +53,24 @@ const Email = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white relative overflow-hidden p-6">
+<div className="bg-red-600/90 text-white px-4 py-4 mb-6 rounded-xl shadow-md flex items-start gap-3 border border-red-500">
+  {/* Warning Icon */}
+  <svg className="w-6 h-6 mt-1 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M4.93 4.93l14.14 14.14M9.17 4.93L19.07 14.83M14.83 4.93L4.93 14.83" />
+  </svg>
+
+  {/* Text Content */}
+  <div className="space-y-1">
+    <p className="font-semibold text-base">Important Notice</p>
+    <p className="text-sm leading-relaxed">
+      Currently in <span className="font-medium">Version 1</span>, this service works <span className="font-medium">only on laptop browsers</span>.
+      To avoid misuse, please do not send more than <span className="font-medium">2 emails within 24 hours</span> — excessive usage may lead to emails being marked as spam by Gmail.
+    </p>
+    <p className="text-sm leading-relaxed mt-1">
+      <span className="font-medium">Reminder:</span> You must sign in before sending an email. Unsigned users cannot restore their progress.
+    </p>
+  </div>
+</div>
 
       {/* Header */}
       <div className="text-center mb-8">
