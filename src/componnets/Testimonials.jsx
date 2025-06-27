@@ -17,8 +17,8 @@ const testimonials = [
   {
     quote:
       "I’ve always struggled to remember anniversaries and special occasions, but with TimeCapsuleMail, that stress is gone. I scheduled a heartfelt letter to my wife for our anniversary months in advance, and when it arrived, she was blown away. It felt like I was more present than ever, even though I had written it months before. This tool makes thoughtfulness effortless.",
-    name: "Rohan Mehta",
-    title:  "Software Engineer",
+    name:"Rohan Mehta",
+    title:"Software Engineer",
   },
   {
     quote:
