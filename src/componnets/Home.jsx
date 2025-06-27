@@ -7,6 +7,7 @@ import Footer from './Footer';
 import Working from './Working';
 import Testimonials from './Testimonials';
 import Features from './Features';
+import { CoverDemo } from './Heading';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -24,46 +25,21 @@ const Home = () => {
   };
 
   return (
-    <div className='relative z-10 bg-black text-white font-inter'>
+    <div className='relative z-10 bg-black text-white font-inter font-serif'>
 
       {/* Header */}
       <div className='container mx-auto flex items-center justify-between py-6 px-6 lg:px-8 relative'>
-        <div className='text-3xl font-black'>
+        <div className='text-3xl font-black font-serif'>
           TimeCapsuleMail
         </div>
 
         {/* Desktop Menu */}
-        <div className='hidden md:flex items-center gap-8 text-lg font-medium'>
+        <div className='hidden md:flex items-center gap-8 text-lg font-medium font-serif'>
           <Link to="home" smooth duration={500} className='cursor-pointer hover:underline'>Home</Link>
           <Link to="about" smooth duration={500} className='cursor-pointer hover:underline'>About</Link>
           <Link to="stories" smooth duration={500} className='cursor-pointer hover:underline'>Stories</Link>
 
-          {/* Support Dropdown */}
-          <div className="relative">
-            <div
-              onClick={() => setShowMenu(showMenu === 'support' ? null : 'support')}
-              className='cursor-pointer hover:underline'
-            >
-              Support
-            </div>
-
-            {showMenu === 'support' && (
-              <div className="absolute right-0 mt-2 w-40 bg-white text-black border rounded shadow-lg z-20">
-                <div
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                  onClick={() => { setShowQr(true); setShowMenu(null); }}
-                >
-                  Show UPI QR
-                </div>
-                <div
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                  onClick={() => { setShowCoffeePopup(true); setShowMenu(null); }}
-                >
-                  Buy Me a Coffee
-                </div>
-              </div>
-            )}
-          </div>
+ 
 
           {/* Auth Button */}
           <div className="relative">
@@ -99,20 +75,19 @@ const Home = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className='md:hidden flex items-center gap-4'>
+        <div className='md:hidden flex items-center gap-4 font-serif'>
           <Menu className='w-6 h-6 cursor-pointer' onClick={() => setShowMobileMenu(true)} />
         </div>
 
         {/* Mobile Menu */}
         {showMobileMenu && (
-          <div className='fixed inset-0 bg-black bg-opacity-95 flex flex-col items-center justify-center gap-8 text-2xl z-50'>
+          <div className='fixed inset-0 bg-black bg-opacity-95 flex flex-col items-center justify-center gap-8 text-2xl z-50 font-serif'>
             <X className='w-8 h-8 absolute top-6 right-6 cursor-pointer' onClick={() => setShowMobileMenu(false)} />
 
             <Link to="home" smooth duration={500} className='cursor-pointer hover:underline' onClick={() => setShowMobileMenu(false)}>Home</Link>
             <Link to="about" smooth duration={500} className='cursor-pointer hover:underline' onClick={() => setShowMobileMenu(false)}>About</Link>
             <Link to="stories" smooth duration={500} className='cursor-pointer hover:underline' onClick={() => setShowMobileMenu(false)}>Stories</Link>
-            <div className='cursor-pointer hover:underline' onClick={() => { setShowQr(true); setShowMobileMenu(false); }}>Show UPI QR</div>
-            <div className='cursor-pointer hover:underline' onClick={() => { setShowCoffeePopup(true); setShowMobileMenu(false); }}>Buy Me a Coffee</div>
+
 
             {user ? (
               <div
@@ -140,9 +115,11 @@ const Home = () => {
           <span>Send messages through time</span>
         </div>
 
-        <h1 className='text-4xl md:text-7xl font-extrabold max-w-4xl leading-tight mb-8'>
+        {/* <h1 className='text-4xl md:text-7xl font-extrabold max-w-4xl leading-tight mb-8'>
           Send a message to your <span className='underline decoration-white/30'>future self</span>… or someone special.
-        </h1>
+        </h1> */}
+
+        <CoverDemo/>
 
         <p className='mt-6 text-lg md:text-2xl max-w-2xl text-gray-300 leading-relaxed'>
           Create meaningful connections across time. Schedule heartfelt messages that arrive exactly when they're needed most.
@@ -191,30 +168,20 @@ const Home = () => {
       <Working />
 
       {/* Testimonials Section */}
-      <Testimonials />
+<div id="stories" className="py-10 text-center">
+  <h2 className="text-2xl sm:text-3xl font-bold mb-4">What Our Users Say</h2>
+  
+  <p className="text-gray-500 mb-6">Real stories from people using TimeCapsuleMail</p>
+
+  <Testimonials />
+</div>
+
 
       {/* Footer */}
       <Footer />
 
-      {/* Buy Me a Coffee Popup */}
-      {showCoffeePopup && (
-        <div className='fixed bottom-6 right-6 bg-white text-black px-4 py-3 rounded-lg shadow-lg z-50 flex items-center gap-3'>
-          <span>☕ Thanks for the support!</span>
-          <X className='w-4 h-4 cursor-pointer' onClick={() => setShowCoffeePopup(false)} />
-        </div>
-      )}
 
-      {/* UPI QR Popup */}
-      {showQr && (
-        <div className='fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50'>
-          <div className='bg-white p-6 rounded-lg relative'>
-            <X className='w-5 h-5 absolute top-2 right-2 cursor-pointer' onClick={() => setShowQr(false)} />
-            <h2 className='text-lg font-bold mb-4 text-black text-center'>Scan to Support</h2>
-            {/* Replace with your actual QR code image */}
-            <img src="your-qr-code.png" alt="UPI QR" className='w-64 h-64 object-contain mx-auto' />
-          </div>
-        </div>
-      )}
+
     </div>
   );
 };

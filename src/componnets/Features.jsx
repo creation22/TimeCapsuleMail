@@ -31,8 +31,8 @@ const Features = () => {
             },
             {
               icon: Star,
-              title: "First Email Free",
-              description: "Experience the magic risk-free with your first time capsule message completely on us."
+              title: " Free",
+              description: "Experience the magic risk-free , your message completely on us until we hit the api limit.."
             },
             {
               icon: Heart,

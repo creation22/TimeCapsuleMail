@@ -15,31 +15,32 @@ export function InfiniteMovingCardsdemo() {
 const testimonials = [
   {
     quote:
-      "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.",
-    name: "Charles Dickens",
-    title: "A Tale of Two Cities",
+      "I’ve always struggled to remember anniversaries and special occasions, but with TimeCapsuleMail, that stress is gone. I scheduled a heartfelt letter to my wife for our anniversary months in advance, and when it arrived, she was blown away. It felt like I was more present than ever, even though I had written it months before. This tool makes thoughtfulness effortless.",
+    name: "Rohan Mehta",
+    title:  "Software Engineer",
   },
   {
     quote:
-      "To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take Arms against a Sea of troubles, And by opposing end them: to die, to sleep.",
-    name: "William Shakespeare",
-    title: "Hamlet",
+      "As a founder, I use TimeCapsuleMail to remind myself of our mission during tough times. It's powerful and reliable.",
+    name: "Kabir  Singh",
+    title: "Startup Founder",
   },
   {
-    quote: "All that we see or seem is but a dream within a dream.",
-    name: "Edgar Allan Poe",
-    title: "A Dream Within a Dream",
-  },
-  {
-    quote:
-      "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
-    name: "Jane Austen",
-    title: "Pride and Prejudice",
+    quote: "TimeCapsuleMail made our wedding day even more special. We wrote letters to our future selves months before, and reading them on the big day was such an emotional, unforgettable moment.",
+    name: " Aarav & Meera",
+    title: "Engaged Couple",
   },
   {
     quote:
-      "Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.",
-    name: "Herman Melville",
-    title: "Moby-Dick",
+      "As an entrepreneur, you often get so caught up in the daily grind that you lose sight of the bigger picture. I’ve started using TimeCapsuleMail to send myself quarterly reminders — words of encouragement, lessons learned, and notes from moments of clarity. Every time those emails arrive, it grounds me. It’s like having a mentor version of myself cheering me on",
+    name: "Kunal Batra"
+,
+    title: "Startup Founder",
+  },
+  {
+    quote:
+      "Sending a letter to my future self has never been easier. TimeCapsuleMail is like a time machine for my thoughts.",
+    name: "Aditi Sharma",
+    title: "Personal Growth Enthusiast",
   },
 ];

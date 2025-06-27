@@ -1,14 +1,15 @@
 import React from 'react';
 import { Star, Twitter, Linkedin, Github } from 'lucide-react';
+import FooterSupport from './FooterSupport';
 
 const Footer = () => {
   return (
-    <div className='bg-black text-white py-8 px-6'>
+    <div className='bg-black text-white py-8 px-6 font-serif'>
       <div className='container mx-auto flex flex-col md:flex-row items-center justify-between gap-6'>
 
         {/* Star the Repo */}
         <a
-          href='https://github.com/your-github-repo' // Replace with your repo link
+          href='https://github.com/creation22/TimeCapsuleMail'
           target='_blank'
           rel='noopener noreferrer'
           className='flex items-center gap-2 hover:underline'
@@ -20,7 +21,7 @@ const Footer = () => {
         {/* Social Links */}
         <div className='flex items-center gap-6'>
           <a
-            href='https://twitter.com/yourprofile' // Replace with your Twitter link
+            href='https://x.com/_Creation22'
             target='_blank'
             rel='noopener noreferrer'
             className='flex items-center gap-2 hover:underline'
@@ -30,7 +31,7 @@ const Footer = () => {
           </a>
 
           <a
-            href='https://linkedin.com/in/yourprofile' // Replace with your LinkedIn link
+            href='https://linkedin.com/in/ssrajangupta22'
             target='_blank'
             rel='noopener noreferrer'
             className='flex items-center gap-2 hover:underline'
@@ -40,7 +41,7 @@ const Footer = () => {
           </a>
 
           <a
-            href='https://github.com/yourprofile' // Replace with your GitHub profile link
+            href='https://github.com/creation22'
             target='_blank'
             rel='noopener noreferrer'
             className='flex items-center gap-2 hover:underline'
@@ -50,8 +51,15 @@ const Footer = () => {
           </a>
         </div>
 
+{/* Support Section */}
+<div>
+  <FooterSupport/>
+</div>
+
+
+
         {/* Credit */}
-        <div className='text-sm text-center md:text-right'>
+        <div className=' text-center md:text-right text-2xl'>
           Made by <span className='font-bold'>Srajan Gupta</span>
         </div>
       </div>
